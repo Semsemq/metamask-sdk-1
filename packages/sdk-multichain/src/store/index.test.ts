@@ -261,7 +261,7 @@ t.describe(`Store with WebAdapter`, () => {
 		await t.expect(() => store.getAnonId()).rejects.toThrow();
 	});
 
-	t.it('Should support multiple StoreAdapterWeb instances with different prefixes', async () => {
+	t.it('Should support multiple StoreAdapterWeb instances with different suffixes', async () => {
 		// Create two adapters with different store names
 		const adapter1 = new StoreAdapterWeb('-1');
 		const adapter2 = new StoreAdapterWeb('-2');
@@ -280,10 +280,10 @@ t.describe(`Store with WebAdapter`, () => {
 		t.expect(result2).toBe('test-id-2');
 	});
 
-	t.it('Should support multiple concurrent instances of different store names and same dbPrefixe', async () => {
-		const databasePrefix = '-kv-store';
-		const sdkAdapter = new StoreAdapterWeb(databasePrefix);
-		const mwpAdapter = new StoreAdapterWeb(databasePrefix, 'key-value-pairs');
+	t.it('Should support multiple concurrent instances of different store names and same dbSuffix', async () => {
+		const databaseSuffix = '-kv-store';
+		const sdkAdapter = new StoreAdapterWeb(databaseSuffix);
+		const mwpAdapter = new StoreAdapterWeb(databaseSuffix, 'key-value-pairs');
 
 		const store1 = new Store(sdkAdapter);
 		const store2 = new Store(mwpAdapter);
