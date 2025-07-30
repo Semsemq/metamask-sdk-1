@@ -10,70 +10,70 @@ type SDKOptions = {
 	extensionId?: string;
 };
 
-async function initialize(extensionId?: string) {
-	const sdk = await createMetamaskSDK({
-		dapp: {
-			name: 'playground',
-			url: 'https://playground.metamask.io',
-		},
-		analytics: {
-			enabled: false,
-		},
-		ui: {
-			headless: false,
-		},
-		...(extensionId && {
-			transport: {
-				extensionId: extensionId,
-			},
-		}),
-	});
-	return sdk;
-}
-
 export function useSDK({ extensionId }: SDKOptions) {
 	const [sdk, setSdk] = useState<MultichainCore>();
 	const [currentExtensionId, setCurrentExtensionId] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [currentSession, setCurrentSession] = useState<SessionData | undefined>(undefined);
 
-	useEffect(() => {
-		let unsubscribe1: () => void;
-		if (sdk) {
-			unsubscribe1 = sdk.on('session_changed', (session) => {
+	const initializeSDK = useCallback(async (extensionId?: string) => {
+		try {
+			const newSdk = await createMetamaskSDK({
+				dapp: {
+					name: 'playground',
+					url: 'https://playground.metamask.io',
+				},
+				analytics: {
+					enabled: false,
+				},
+				ui: {
+					headless: false,
+				},
+				...(extensionId && {
+					transport: {
+						extensionId: extensionId,
+					},
+				}),
+			});
+
+			// Set up event listener immediately after SDK creation
+			const unsubscribe = newSdk.on('session_changed', (session) => {
 				setCurrentSession(session);
 			});
-			if (sdk.state === 'pending') {
-				sdk.init();
+
+			// Initialize the SDK if it's still pending
+			if (newSdk.state === 'pending') {
+				await newSdk.init();
 			}
+
+			setSdk(newSdk);
+			return unsubscribe;
+		} catch (error: any) {
+			setError(error.message);
+			return undefined;
 		}
-		return () => {
-			unsubscribe1?.();
-		};
-	}, [sdk]);
+	}, []);
 
 	useEffect(() => {
+		let unsubscribe: (() => void) | undefined;
+
 		if (extensionId && currentExtensionId !== extensionId) {
 			setCurrentExtensionId(extensionId);
 			// Reinitialize SDK with new extension ID
-			initialize(extensionId)
-				.then((newSdk) => {
-					setSdk(newSdk);
-				})
-				.catch((error) => {
-					setError(error.message);
-				});
+			initializeSDK(extensionId).then((unsub) => {
+				unsubscribe = unsub;
+			});
 		} else if (!sdk) {
 			// Initialize SDK for the first time
-			initialize(extensionId)
-				.then((sdk) => {
-					setSdk(sdk);
-				})
-				.catch((error) => {
-					setError(error.message);
-				});
+			initializeSDK(extensionId).then((unsub) => {
+				unsubscribe = unsub;
+			});
 		}
-	}, [sdk, extensionId, currentExtensionId]);
+
+		return () => {
+			unsubscribe?.();
+		};
+	}, [sdk, extensionId, currentExtensionId, initializeSDK]);
 
 	const disconnect = useCallback(async () => {
 		await sdk?.disconnect();
