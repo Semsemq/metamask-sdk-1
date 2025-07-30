@@ -281,13 +281,7 @@ export class MultichainSDK extends MultichainCore {
 
 			if (!preferExtension) {
 				// Has extension but we don't automatically chooose extension so we should show
-				return factory.renderSelectModal(link, true, async () => {
-					//This callback is after the user clicked extension in the select tab
-					return this.onConnectionSuccess(TransportType.Browser, transport, {
-						scopes,
-						caipAccountIds,
-					});
-				});
+				return factory.renderInstallModal(link, true);
 			}
 
 			//We have extension and extension is the prefferred
