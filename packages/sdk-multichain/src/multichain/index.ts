@@ -97,7 +97,6 @@ export class MultichainSDK extends MultichainCore {
 		if (isEnabled) {
 			enableDebug('metamask-sdk:core');
 		}
-		await instance.init();
 		return instance;
 	}
 
