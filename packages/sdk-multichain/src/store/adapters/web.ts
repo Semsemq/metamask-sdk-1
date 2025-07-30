@@ -3,7 +3,8 @@ import { StoreAdapter } from '../../domain';
 type kvStores = 'sdk-kv-store' | 'key-value-pairs';
 
 export class StoreAdapterWeb extends StoreAdapter {
-	static readonly DB_NAME = 'multichain-kv-store';
+	static readonly stores: kvStores[] = ['sdk-kv-store', 'key-value-pairs'];
+	static readonly DB_NAME = 'mmsdk';
 
 	readonly platform = 'web';
 	readonly dbPromise: Promise<IDBDatabase>;
@@ -16,16 +17,24 @@ export class StoreAdapterWeb extends StoreAdapter {
 	}
 
 	constructor(
+		dbNamePrefix: `-${string}` = '-kv-store',
 		private storeName: kvStores = 'sdk-kv-store',
-		private prefix = 'mwp-',
 	) {
 		super();
+
+		const dbName = dbNamePrefix ? `${StoreAdapterWeb.DB_NAME}-${dbNamePrefix}` : StoreAdapterWeb.DB_NAME;
+
 		this.dbPromise = new Promise((resolve, reject) => {
-			const request = this.internal.open(StoreAdapterWeb.DB_NAME, 1);
+			const request = this.internal.open(dbName, 1);
 			request.onerror = () => reject(new Error('Failed to open IndexedDB.'));
 			request.onsuccess = () => resolve(request.result);
 			request.onupgradeneeded = () => {
-				request.result.createObjectStore(storeName);
+				const db = request.result;
+				for (const name of StoreAdapterWeb.stores) {
+					if (!db.objectStoreNames.contains(name)) {
+						db.createObjectStore(name);
+					}
+				}
 			};
 		});
 	}
@@ -36,7 +45,7 @@ export class StoreAdapterWeb extends StoreAdapter {
 		return new Promise((resolve, reject) => {
 			const tx = db.transaction(storeName, 'readonly');
 			const store = tx.objectStore(storeName);
-			const request = store.get(this.getKey(key));
+			const request = store.get(key);
 			request.onerror = () => reject(new Error('Failed to get value from IndexedDB.'));
 			request.onsuccess = () => resolve((request.result as string) ?? null);
 		});
@@ -48,7 +57,7 @@ export class StoreAdapterWeb extends StoreAdapter {
 		return new Promise((resolve, reject) => {
 			const tx = db.transaction(storeName, 'readwrite');
 			const store = tx.objectStore(storeName);
-			const request = store.put(value, this.getKey(key));
+			const request = store.put(value, key);
 			request.onerror = () => reject(new Error('Failed to set value in IndexedDB.'));
 			request.onsuccess = () => resolve();
 		});
@@ -60,13 +69,9 @@ export class StoreAdapterWeb extends StoreAdapter {
 		return new Promise((resolve, reject) => {
 			const tx = db.transaction(storeName, 'readwrite');
 			const store = tx.objectStore(storeName);
-			const request = store.delete(this.getKey(key));
+			const request = store.delete(key);
 			request.onerror = () => reject(new Error('Failed to delete value from IndexedDB.'));
 			request.onsuccess = () => resolve();
 		});
-	}
-
-	private getKey(key: string): string {
-		return `${this.prefix}${key}`;
 	}
 }
