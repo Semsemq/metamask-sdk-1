@@ -269,11 +269,15 @@ export class MultichainSDK extends MultichainCore {
 			}
 
 			const link = this.options.dapp.url ?? this.options.dapp.name ?? 'dummy';
+
 			if (!this.hasExtension) {
-				return factory.renderInstallModal(link, preferDesktop || !preferExtension);
+				return factory.renderInstallModal(link, preferDesktop);
 			}
 
-			//We have extension and extension is the prefferred
+			if (this.hasExtension && !preferExtension) {
+				return factory.renderInstallModal(link, preferDesktop);
+			}
+
 			return this.onConnectionSuccess(TransportType.Browser, transport, {
 				scopes,
 				caipAccountIds,
