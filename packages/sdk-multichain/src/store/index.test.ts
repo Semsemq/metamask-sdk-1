@@ -280,7 +280,7 @@ t.describe(`Store with WebAdapter`, () => {
 		t.expect(result2).toBe('test-id-2');
 	});
 
-	t.it('Should support multiple concurrent instances of different store names and dbPrefixes', async () => {
+	t.it('Should support multiple concurrent instances of different store names and same dbPrefixe', async () => {
 		const databasePrefix = '-kv-store';
 		const sdkAdapter = new StoreAdapterWeb(databasePrefix);
 		const mwpAdapter = new StoreAdapterWeb(databasePrefix, 'key-value-pairs');
