@@ -25,17 +25,21 @@ export class StoreAdapterWeb extends StoreAdapter {
 		const dbName = `${StoreAdapterWeb.DB_NAME}${dbNameSuffix}`;
 
 		this.dbPromise = new Promise((resolve, reject) => {
-			const request = this.internal.open(dbName, 1);
-			request.onerror = () => reject(new Error('Failed to open IndexedDB.'));
-			request.onsuccess = () => resolve(request.result);
-			request.onupgradeneeded = () => {
-				const db = request.result;
-				for (const name of StoreAdapterWeb.stores) {
-					if (!db.objectStoreNames.contains(name)) {
-						db.createObjectStore(name);
+			try {
+				const request = this.internal.open(dbName, 1);
+				request.onerror = () => reject(new Error('Failed to open IndexedDB.'));
+				request.onsuccess = () => resolve(request.result);
+				request.onupgradeneeded = () => {
+					const db = request.result;
+					for (const name of StoreAdapterWeb.stores) {
+						if (!db.objectStoreNames.contains(name)) {
+							db.createObjectStore(name);
+						}
 					}
-				}
-			};
+				};
+			} catch (error) {
+				reject(error);
+			}
 		});
 	}
 
