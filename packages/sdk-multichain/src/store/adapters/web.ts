@@ -17,12 +17,12 @@ export class StoreAdapterWeb extends StoreAdapter {
 	}
 
 	constructor(
-		dbNamePrefix: `-${string}` = '-kv-store',
+		dbNameSuffix: `-${string}` = '-kv-store',
 		private storeName: kvStores = StoreAdapterWeb.stores[0],
 	) {
 		super();
 
-		const dbName = `${StoreAdapterWeb.DB_NAME}${dbNamePrefix}`;
+		const dbName = `${StoreAdapterWeb.DB_NAME}${dbNameSuffix}`;
 
 		this.dbPromise = new Promise((resolve, reject) => {
 			const request = this.internal.open(dbName, 1);
