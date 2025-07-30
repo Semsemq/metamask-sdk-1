@@ -11,6 +11,7 @@ import { StoreAdapterNode } from './adapters/node';
 import { StoreAdapterRN } from './adapters/rn';
 import { StoreAdapterWeb } from './adapters/web';
 import { Store } from './index';
+import { IDBFactory as FakeIndexedDB } from 'fake-indexeddb';
 
 /**
  * Dummy mocked storage to keep track of data between tests
@@ -42,6 +43,7 @@ function createStoreTests(adapterName: string, createAdapter: () => StoreAdapter
 
 	t.afterEach(async () => {
 		nativeStorageStub.data.clear();
+
 		cleanupMocks?.();
 	});
 
@@ -246,6 +248,7 @@ t.describe(`Store with WebAdapter`, () => {
 		() => {
 			t.vi.stubGlobal('window', {
 				localStorage: nativeStorageStub,
+				indexedDB: new FakeIndexedDB(),
 			});
 		},
 	);

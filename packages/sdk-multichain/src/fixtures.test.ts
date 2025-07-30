@@ -14,9 +14,7 @@ import * as t from 'vitest';
 import { vi } from 'vitest';
 import type { MultiChainFNOptions, MultichainCore, SessionData } from '../src/domain';
 import { MultichainSDK } from '../src/multichain';
-import * as nodeStorage from './store/adapters/node';
-import * as rnStorage from './store/adapters/rn';
-import * as webStorage from './store/adapters/web';
+import { IDBFactory as FakeIndexedDB } from 'fake-indexeddb';
 
 // Import createSDK functions for convenience
 import { createMetamaskSDK as createMetamaskSDKWeb } from './index.browser';
@@ -129,23 +127,17 @@ export const mockSessionData: SessionData = {
 };
 
 // Standardized setup functions for each platform
-export const setupNodeMocks = (nativeStorageStub: NativeStorageStub) => {
+export const setupNodeMocks = () => {
 	const memfs = new Map<string, any>();
 	t.vi.spyOn(fs, 'existsSync').mockImplementation((path) => memfs.has(path.toString()));
 	t.vi.spyOn(fs, 'writeFileSync').mockImplementation((path, data) => memfs.set(path.toString(), data));
 	t.vi.spyOn(fs, 'readFileSync').mockImplementation((path) => memfs.get(path.toString()));
-	t.vi.spyOn(nodeStorage, 'StoreAdapterNode').mockImplementation(() => {
-		return nativeStorageStub as any;
-	});
 };
 
 export const setupRNMocks = (nativeStorageStub: NativeStorageStub) => {
 	t.vi.spyOn(AsyncStorage, 'getItem').mockImplementation(async (key) => nativeStorageStub.getItem(key));
 	t.vi.spyOn(AsyncStorage, 'setItem').mockImplementation(async (key, value) => nativeStorageStub.setItem(key, value));
-	t.vi.spyOn(AsyncStorage, 'removeItem').mockImplementation(async (key) => nativeStorageStub.deleteItem(key));
-	t.vi.spyOn(rnStorage, 'StoreAdapterRN').mockImplementation(() => {
-		return nativeStorageStub as any;
-	});
+	t.vi.spyOn(AsyncStorage, 'removeItem').mockImplementation(async (key) => nativeStorageStub.removeItem(key));
 };
 
 export const setupWebMocks = (nativeStorageStub: NativeStorageStub, dappUrl = 'https://test.dapp') => {
@@ -157,6 +149,7 @@ export const setupWebMocks = (nativeStorageStub: NativeStorageStub, dappUrl = 'h
 		addEventListener: t.vi.fn(),
 		removeEventListener: t.vi.fn(),
 		localStorage: nativeStorageStub,
+		indexedDB: new FakeIndexedDB(),
 		ethereum: {
 			isMetaMask: true,
 		},
@@ -171,9 +164,6 @@ export const setupWebMocks = (nativeStorageStub: NativeStorageStub, dappUrl = 'h
 	t.vi.stubGlobal('document', dom.window.document);
 	t.vi.stubGlobal('HTMLElement', dom.window.HTMLElement);
 	t.vi.stubGlobal('requestAnimationFrame', t.vi.fn());
-	t.vi.spyOn(webStorage, 'StoreAdapterWeb').mockImplementation(() => {
-		return nativeStorageStub as any;
-	});
 };
 
 // Helper functions to create standardized test configurations
