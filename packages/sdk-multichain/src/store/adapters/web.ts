@@ -22,7 +22,7 @@ export class StoreAdapterWeb extends StoreAdapter {
 	) {
 		super();
 
-		const dbName = dbNamePrefix ? `${StoreAdapterWeb.DB_NAME}${dbNamePrefix}` : StoreAdapterWeb.DB_NAME;
+		const dbName = `${StoreAdapterWeb.DB_NAME}${dbNamePrefix}`;
 
 		this.dbPromise = new Promise((resolve, reject) => {
 			const request = this.internal.open(dbName, 1);
