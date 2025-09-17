@@ -27,6 +27,3 @@ jobs:
         npm install
         npx webpack
 
-permissions:
-  contents: read and write # access to check out code and install dependencies
-
