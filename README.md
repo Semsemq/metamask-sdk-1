@@ -23,7 +23,6 @@ The MetaMask SDK instance returns a provider, this provider is the `ethereum` ob
 The following code examplifies importing the SDK into a javascript-based app. For other languages, check the sections bellow.
 
 Install the SDK:
-
 ```
 yarn add @metamask/sdk
 or
