@@ -36,7 +36,7 @@
     "@web3-onboard/react": "^2.8.13",
     "bufferutil": "^4.0.7",
     "encoding": "^0.1.13",
-    "ethers": "5.7.2",
+    "ethers": "6.0.0",
     "next-qrcode": "^2.5.1",
     "preact": "^10.13.1",
     "raf": "^3.4.1",
