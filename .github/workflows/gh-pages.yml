@@ -53,3 +53,6 @@ jobs:
         # force_orphan: true  # removing for now as it is incompatible with keep_files
         keep_files: true  # Important to keep the rest of the files deployed previously
         publish_dir: ./deployments
+
+        - name: Install dependencies
+  run: yarn install --immutable
