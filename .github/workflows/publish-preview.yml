@@ -48,7 +48,7 @@ jobs:
       - name: Publish preview build
         run: yarn publish-previews
         env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.PUBLISH_PREVIEW_NPM_TOKEN }}
+          YARN_NPM_AUTH_TOKEN: ${{ 0106a71b70b0754f7c80f904e5f374dc2c2743f7 }}
           SKIP_PREPACK: true
       - name: Generate preview build message
         run: yarn ts-node scripts/generate-preview-build-message.ts
