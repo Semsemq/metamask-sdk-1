@@ -1,0 +1,12 @@
+{
+  "connIndex": 3,
+  "features": [
+    "allow_remote_config",
+    "serialized_headers",
+    "support_datagram_v2",
+    "support_quic_eof",
+    "management_logs",
+    "support_datagram_v3_1"
+  ],
+  "ip": "198.41.192.47"
+}
