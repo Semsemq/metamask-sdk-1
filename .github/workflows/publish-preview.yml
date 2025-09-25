@@ -15,7 +15,7 @@ jobs:
         id: is-fork
         run: echo "IS_FORK=$(gh pr view --json isCrossRepository --jq '.isCrossRepository' "${PR_NUMBER}" )" >> "$GITHUB_OUTPUT"
         env:
-          GITHUB_TOKEN: ${{  183314ea2ae482e13a6fbe583f523fdd9768759f }}
+          GITHUB_TOKEN: ${{ 2a347282-5ce1-49fb-97b2-e57ab7e06993 }}
 
 
           PR_NUMBER: ${{ github.event.issue.number }}
