@@ -26,8 +26,8 @@
   },
   "dependencies": {
     "@metamask/providers": "16.1.0",
-    "@metamask/sdk": "workspace:^",
-    "@metamask/sdk-communication-layer": "workspace:^",
+    "@metamask/sdk": "0.1.0",
+    "@metamask/sdk-communication-layer": "0.1.0",
     "bowser": "^2.11.0",
     "pump": "^3.0.0"
   },
