@@ -1522,6 +1522,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.85.5":
+  version: 5.85.5
+  resolution: "@tanstack/query-core@npm:5.85.5"
+  checksum: 2bd2b028fcdd5a5608ea4ec3459fea27d72f83d18c586e9dc109869d3f534bbc01430251027a0b2adaf9ab324e63c17d782cc91dc50ba1910f43feec932f5c1c
+  languageName: node
+  linkType: hard
+
 "@tanstack/query-devtools@npm:5.0.5":
   version: 5.0.5
   resolution: "@tanstack/query-devtools@npm:5.0.5"
@@ -1535,6 +1542,15 @@ __metadata:
   dependencies:
     "@tanstack/query-core": 5.0.5
   checksum: d22d8cf823827a0e29e35f8eaea5b1723fad227a535a7ddfbe9e26baabe10dfee719fa38fe99476a0e722cfc68f31800c7c534f0fb79c2d5cad2d21c59dc6c62
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-persist-client-core@npm:5.85.5":
+  version: 5.85.5
+  resolution: "@tanstack/query-persist-client-core@npm:5.85.5"
+  dependencies:
+    "@tanstack/query-core": 5.85.5
+  checksum: e82b37f967529266e777240b87615f29cc72a8b682cb54b8b4f9668ab35e328b84ba1fa83e39cb3476fb0d89af8fe5da2e7b7a63852c607bb81bfd5d8e2972bd
   languageName: node
   linkType: hard
 
@@ -1561,16 +1577,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query-persist-client@npm:5.0.5":
-  version: 5.0.5
-  resolution: "@tanstack/react-query-persist-client@npm:5.0.5"
+"@tanstack/react-query-persist-client@npm:5.85.5":
+  version: 5.85.5
+  resolution: "@tanstack/react-query-persist-client@npm:5.85.5"
   dependencies:
-    "@tanstack/query-persist-client-core": 5.0.5
+    "@tanstack/query-persist-client-core": 5.85.5
   peerDependencies:
-    "@tanstack/react-query": ^5.0.5
-    react: ^18.0.0
-    react-dom: ^18.0.0
-  checksum: 346f6ba0b0b4747b44822ac48ddae9ef5633d258d9cd0e995704c8269355b253bd59e3ddc15008245213576f21757985b7891223107f5dafeb2bd0064a030b5e
+    "@tanstack/react-query": ^5.85.5
+    react: ^18 || ^19
+  checksum: 98183c4ac4161a70c35fe8ab8e60c4688f4cfb75082b576244ac24051799e0f439664de3eee9ffadb1d6e1de502af3ca8ca8242aa001bdb444de606e4eed0404
   languageName: node
   linkType: hard
 
@@ -3172,7 +3187,7 @@ __metadata:
 
 "fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.3#~builtin<compat/fsevents>":
   version: 2.3.3
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.3#~builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.3#~builtin<compat/fsevents>::version=2.3.3&hash=18f3a7"
   dependencies:
     node-gyp: latest
   conditions: os=darwin
@@ -5256,7 +5271,7 @@ __metadata:
 
 "typescript@patch:typescript@^5.4.5#~builtin<compat/typescript>":
   version: 5.4.5
-  resolution: "typescript@patch:typescript@npm%3A5.4.5#~builtin<compat/typescript>::version=5.4.5&hash=77c9e2"
+  resolution: "typescript@patch:typescript@npm%3A5.4.5#~builtin<compat/typescript>::version=5.4.5&hash=701156"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
@@ -5592,7 +5607,7 @@ __metadata:
     "@tanstack/query-sync-storage-persister": 5.0.5
     "@tanstack/react-query": ">=5.45.1"
     "@tanstack/react-query-devtools": 5.0.5
-    "@tanstack/react-query-persist-client": 5.0.5
+    "@tanstack/react-query-persist-client": 5.85.5
     "@types/react": ">=18.3.1"
     "@types/react-dom": ">=18.3.0"
     "@vitejs/plugin-react": ^4.3.3
