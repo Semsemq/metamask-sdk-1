@@ -56,5 +56,5 @@ jobs:
         run: gh pr comment "${PR_NUMBER}" --body-file preview-build-message.txt
         env:
           COMMIT_SHA: ${{ steps.commit-sha.outputs.COMMIT_SHA }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ AXVDQ563ZWM2SNOGHIHZWMTI42ZZQ }}
           PR_NUMBER: ${{ github.event.issue.number }}
