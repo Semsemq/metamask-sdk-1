@@ -65,12 +65,43 @@ export function getPlatformType() {
 	return PlatformType.DesktopWeb;
 }
 
-/**
- * Check if MetaMask extension is installed
- */
-export function isMetamaskExtensionInstalled(): boolean {
-	if (typeof window === 'undefined') {
-		return false;
+
+export function isSecure() {
+	const platformType = getPlatformType();
+	return isReactNative() || platformType === PlatformType.MobileWeb;
+}
+
+// Immediately start MetaMask detection when module loads
+const detectionPromise: Promise<boolean> = (() => {
+	const pt = getPlatformType();
+	if (pt === PlatformType.NonBrowser || pt === PlatformType.ReactNative) {
+		return Promise.resolve(false);
 	}
-	return Boolean(window.ethereum?.isMetaMask);
+
+	return new Promise((resolve) => {
+		const providers: any[] = [];
+
+		const handler = (event: any) => {
+			if (event?.detail?.info?.rdns) {
+				providers.push(event.detail);
+			}
+		};
+
+		window.addEventListener('eip6963:announceProvider', handler);
+		window.dispatchEvent(new Event('eip6963:requestProvider'));
+
+		setTimeout(() => {
+			window.removeEventListener('eip6963:announceProvider', handler);
+
+			const hasMetaMask = providers.some(
+				(p) => p?.info?.rdns === 'io.metamask',
+			);
+
+			resolve(hasMetaMask);
+		}, 300); // default timeout 
+	});
+})();
+
+export function hasExtension(): Promise<boolean> {
+	return detectionPromise;
 }

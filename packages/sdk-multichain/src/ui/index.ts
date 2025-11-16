@@ -1,9 +1,9 @@
 import MetaMaskOnboarding from '@metamask/onboarding';
-import { getPlatformType, getVersion, type Modal, type OTPCode, PlatformType } from '../domain';
-import type { SessionRequest } from '@metamask/mobile-wallet-protocol-core';
+import { type ConnectionRequest, getPlatformType, getVersion, type Modal, type OTPCode, PlatformType } from '../domain';
 import type { FactoryModals, ModalTypes } from './modals/types';
-import type { AbstractInstallModal } from './modals/base/AbstractInstallModal';
 import type { AbstractOTPCodeModal } from './modals/base/AbstractOTPModal';
+import { compressString } from '../multichain/utils';
+import { METAMASK_CONNECT_BASE_URL, METAMASK_DEEPLINK_BASE } from 'src/config';
 
 // @ts-ignore
 let __instance: typeof import('@metamask/sdk-multichain-ui/dist/loader/index.cjs.js') | undefined;
@@ -25,9 +25,10 @@ export async function preload() {
 }
 
 export class ModalFactory<T extends FactoryModals = FactoryModals> {
-	public modal!: Modal;
+	// biome-ignore lint/suspicious/noExplicitAny: Expected here
+	public modal!: Modal<any>;
 	private readonly platform: PlatformType = getPlatformType();
-	private successCallback!: (success: boolean, error?: Error) => void;
+	private successCallback!: (error?: Error) => Promise<void>;
 
 	/**
 	 * Creates a new modal factory instance.
@@ -45,9 +46,9 @@ export class ModalFactory<T extends FactoryModals = FactoryModals> {
 		}
 	}
 
-	unload(success: boolean, error?: Error) {
+	async unload(error?: Error) {
 		this.modal?.unmount();
-		this.successCallback?.(success, error);
+		await this.successCallback?.(error);
 	}
 
 	/**
@@ -89,33 +90,54 @@ export class ModalFactory<T extends FactoryModals = FactoryModals> {
 		return container;
 	}
 
-	public async renderInstallModal(
-		preferDesktop: boolean,
-		createSessionRequest: () => Promise<SessionRequest>,
-		successCallback: (success: boolean, error?: Error) => void,
-		updateSessionRequest: (sessionRequest: SessionRequest, modal: AbstractInstallModal) => void,
-	) {
+	createDeeplink(connectionRequest?: ConnectionRequest) {
+		if (!connectionRequest) {
+			return `${METAMASK_DEEPLINK_BASE}`;
+		}
+		const json = JSON.stringify(connectionRequest);
+		const compressed = compressString(json);
+		const urlEncoded = encodeURIComponent(compressed);
+		return `${METAMASK_DEEPLINK_BASE}/mwp?p=${urlEncoded}&c=1`;
+	}
+
+	createUniversalLink(connectionRequest?: ConnectionRequest) {
+		if (!connectionRequest) {
+			return `${METAMASK_CONNECT_BASE_URL}`;
+		}
+		const json = JSON.stringify(connectionRequest);
+		const compressed = compressString(json);
+		const urlEncoded = encodeURIComponent(compressed);
+		return `${METAMASK_CONNECT_BASE_URL}/mwp?p=${urlEncoded}&c=1`;
+	}
+
+	private async onCloseModal(shouldTerminate = true) {
+		return this.unload(shouldTerminate ? new Error('User closed modal') : undefined);
+	}
+
+	private onStartDesktopOnboarding() {
+		new MetaMaskOnboarding().startOnboarding();
+	}
+
+	public async renderInstallModal(preferDesktop: boolean, createConnectionRequest: () => Promise<ConnectionRequest>, successCallback: (error?: Error) => Promise<void>) {
 		this.modal?.unmount();
 		await preload();
 		this.successCallback = successCallback;
 
 		const parentElement = this.getMountedContainer();
-		const sessionRequest = await createSessionRequest();
+		const connectionRequest = await createConnectionRequest();
+		const qrCodeLink = this.createDeeplink(connectionRequest);
 
 		const modal = new this.options.InstallModal({
+			expiresIn: (connectionRequest.sessionRequest.expiresAt - Date.now()) / 1000,
+			connectionRequest,
 			parentElement,
 			preferDesktop,
-			sessionRequest,
+			link: qrCodeLink,
 			sdkVersion: getVersion(),
-			onClose: () => {
-				this.unload(true);
-			},
-			startDesktopOnboarding: () => {
-				new MetaMaskOnboarding().startOnboarding();
-				this.unload(true);
-			},
-			createSessionRequest,
-			updateSessionRequest: (sessionRequest: SessionRequest) => updateSessionRequest(sessionRequest, modal),
+			generateQRCode: async (request) => this.createDeeplink(request),
+			onClose: this.onCloseModal.bind(this),
+			startDesktopOnboarding: this.onStartDesktopOnboarding.bind(this),
+			createConnectionRequest,
 		});
 
 		this.modal = modal;
@@ -124,7 +146,7 @@ export class ModalFactory<T extends FactoryModals = FactoryModals> {
 
 	public async renderOTPCodeModal(
 		createOTPCode: () => Promise<OTPCode>,
-		successCallback: (success: boolean, error?: Error) => void,
+		successCallback: (error?: Error) => Promise<void>,
 		updateOTPCode: (otpCode: OTPCode, modal: AbstractOTPCodeModal) => void,
 	) {
 		this.modal?.unmount();
@@ -138,9 +160,7 @@ export class ModalFactory<T extends FactoryModals = FactoryModals> {
 			parentElement: container,
 			sdkVersion: getVersion(),
 			otpCode,
-			onClose: () => {
-				this.unload(true);
-			},
+			onClose: this.onCloseModal.bind(this),
 			createOTPCode,
 			updateOTPCode: (otpCode: OTPCode) => updateOTPCode(otpCode, modal),
 		});
