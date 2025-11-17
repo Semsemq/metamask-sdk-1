@@ -5,7 +5,7 @@ import type { StoreClient } from '../store/client';
 import type { InvokeMethodOptions, RPCAPI, Scope } from './api/types';
 import type { MultichainOptions } from './types';
 
-export type SDKState = 'pending' | 'loaded' | 'disconnected' | 'connected';
+export type SDKState = 'pending' | 'loaded' | 'disconnected' | 'connected' | 'connecting';
 
 export enum TransportType {
 	Browser = 'browser',
@@ -25,7 +25,6 @@ export abstract class MultichainCore extends EventEmitter<SDKEvents> {
 	abstract provider: MultichainApiClient<RPCAPI>;
 	abstract transport: Transport;
 
-	abstract getCurrentSession(): Promise<SessionData | undefined>;
 	/**
 	 * Establishes a connection to the multichain provider, or re-use existing session
 	 *
