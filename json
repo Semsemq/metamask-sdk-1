@@ -1,12 +1,21 @@
 {
-  "connIndex": 3,
-  "features": [
-    "allow_remote_config",
-    "serialized_headers",
-    "support_datagram_v2",
-    "support_quic_eof",
-    "management_logs",
-    "support_datagram_v3_1"
+  "inputs": [
+    {
+      "id": "api_token",
+      "type": "promptString",
+      "description":  Hostinger API"
+    }
   ],
-  "ip": "198.41.192.47"
+  "servers": {
+    "hostinger-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "hostinger-api-mcp@latest"
+      ],
+      "env": {
+        "API_TOKEN": "DgVVZpZtVxWZ4fMj6EUaCPdrlr83ra8WWEjq8oMNda79d14f"
+      }
+    }
+  }
 }
