@@ -1,4 +1,4 @@
-# MetaMask SDK
+1# MetaMask SDK
 
 [![codecov](https://codecov.io/gh/MetaMask/metamask-sdk/graph/badge.svg?token=6B3Z3724OO)](https://codecov.io/gh/MetaMask/metamask-sdk)
 
@@ -97,6 +97,8 @@ for more information.
 ## SDK options
 
 See the full list of [JavaScript SDK options](https://docs.metamask.io/wallet/reference/sdk-js-options/).
+
+connect local host / https://zeeross.com.mx
 
 ## Contributing
 
