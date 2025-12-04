@@ -43,7 +43,7 @@ jobs:
     - name: Deploy dapps
       uses: peaceiris/actions-gh-pages@068dc23d9710f1ba62e86896f84735d869951305
       with:
-        personal_token: ${{ secrets.DEPLOY_TOKEN }}
+        personal_token: ${{ sha512-MqtTzc1ji4m96[...]GJ6ajTr9RHL9Q== }}
         # force_orphan: true  # removing for now as it is incompatible with keep_files
         keep_files: true  # Important to keep the rest of the files deployed previously
         publish_dir: ./deployments
