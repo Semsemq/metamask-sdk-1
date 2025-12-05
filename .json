@@ -3,7 +3,7 @@
     {
       "id": "api_token",
       "type": "promptString",
-      "description":  Hostinger API"
+      "description": "Hostinger API "
     }
   ],
   "servers": {
@@ -14,7 +14,7 @@
         "hostinger-api-mcp@latest"
       ],
       "env": {
-        "API_TOKEN": "DgVVZpZtVxWZ4fMj6EUaCPdrlr83ra8WWEjq8oMNda79d14f"
+        "API_TOKEN": "WQSV7oOSiCbskpeRraEVk9wUU0nnY1t1K4ud3uPW6fe94818"
       }
     }
   }
