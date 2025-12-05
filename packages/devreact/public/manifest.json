@@ -1,25 +1,131 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
+  "schemaVersion": 2,
+  "manifests": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:96412b7d28c2917ebedb6153604131d02d5cda5b9253b635e7d1057ca3cf650e",
+      "size": 2181,
+      "platform": {
+        "architecture": "arm64",
+        "os": "linux",
+        "os.version": "Ubuntu 22.04.5"
+      },
+      "annotations": {
+        "org.opencontainers.image.ref.name": "1.4.1.arm64_linux",
+        "sh.brew.bottle.cpu.variant": "armv8",
+        "sh.brew.bottle.digest": "f79d9d9e62971a416bff77be8f9b50251514941a859f4a92c469e7996ffe715c",
+        "sh.brew.bottle.glibc.version": "2.35",
+        "sh.brew.bottle.size": "1905729",
+        "sh.brew.bottle.installed_size": "6576085",
+        "sh.brew.license": "GPL-2.0-only OR LGPL-3.0-or-later",
+        "sh.brew.tab": "{\"homebrew_version\":\"4.6.15-60-g9991345\",\"changed_files\":[],\"source_modified_time\":1759679175,\"compiler\":\"gcc-12\",\"runtime_dependencies\":[],\"arch\":\"arm64\",\"built_on\":{\"os\":\"Linux\",\"os_version\":\"Ubuntu 22.04.5\",\"cpu_family\":\"arm\",\"glibc_version\":\"2.35\",\"oldest_cpu_family\":\"armv8\"}}"
+      }
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:aaa07ddd8c2f1e3b7a52f4e7ec9b7c8358e93e615291d43254de99b408aea7c2",
+      "size": 2123,
+      "platform": {
+        "architecture": "arm64",
+        "os": "darwin",
+        "os.version": "macOS 15.4"
+      },
+      "annotations": {
+        "org.opencontainers.image.ref.name": "1.4.1.arm64_sequoia",
+        "sh.brew.bottle.digest": "dbc874f78025281d97cf683531c635a6a4195b928f1af4288bda71e6dba723cd",
+        "sh.brew.bottle.size": "1876716",
+        "sh.brew.bottle.installed_size": "5767135",
+        "sh.brew.license": "GPL-2.0-only OR LGPL-3.0-or-later",
+        "sh.brew.tab": "{\"homebrew_version\":\"4.6.15-60-g9991345\",\"changed_files\":[],\"source_modified_time\":1759679175,\"compiler\":\"clang\",\"runtime_dependencies\":[],\"arch\":\"arm64\",\"built_on\":{\"os\":\"Macintosh\",\"os_version\":\"macOS 15.4\",\"cpu_family\":\"dunno\",\"xcode\":\"16.3\",\"clt\":\"16.3.0.0.1.1742442376\",\"preferred_perl\":\"5.34\"}}"
+      }
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:693d888ae2a579254142c3815740b11d60026917f8855f193e26b2975834d11c",
+      "size": 2120,
+      "platform": {
+        "architecture": "arm64",
+        "os": "darwin",
+        "os.version": "macOS 14.7"
+      },
+      "annotations": {
+        "org.opencontainers.image.ref.name": "1.4.1.arm64_sonoma",
+        "sh.brew.bottle.digest": "7b03a079d5408f0d111accb2331f8f881fbb9e395ee05a583ca436c218ff44e1",
+        "sh.brew.bottle.size": "1870509",
+        "sh.brew.bottle.installed_size": "5767239",
+        "sh.brew.license": "GPL-2.0-only OR LGPL-3.0-or-later",
+        "sh.brew.tab": "{\"homebrew_version\":\"4.6.15-60-g9991345\",\"changed_files\":[],\"source_modified_time\":1759679175,\"compiler\":\"clang\",\"runtime_dependencies\":[],\"arch\":\"arm64\",\"built_on\":{\"os\":\"Macintosh\",\"os_version\":\"macOS 14.7\",\"cpu_family\":\"dunno\",\"xcode\":\"16.2\",\"clt\":\"16.2.0.0.1.1733547573\",\"preferred_perl\":\"5.34\"}}"
+      }
+    },
+    {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:deac6155591acf2c57bc51b3b3685dfecfc359c1b684f14e633212036accce6c",
+      "size": 2115,
+      "platform": {
+        "architecture": "arm64",
+        "os": "darwin",
+        "os.version": "macOS 26"
+      },
+      "annotations": {
+        "org.opencontainers.image.ref.name": "1.4.1.arm64_tahoe",
+        "sh.brew.bottle.digest": "b9abc2b3782640cabca4ee0e0e2072478f4eab5c3c74bfdb8a9fbf2eff80c4b1",
+        "sh.brew.bottle.size": "1877283",
+        "sh.brew.bottle.installed_size": "5754661",
+        "sh.brew.license": "GPL-2.0-only OR LGPL-3.0-or-later",
+        "sh.brew.tab": "{\"homebrew_version\":\"4.6.15-60-g9991345\",\"changed_files\":[],\"source_modified_time\":1759679175,\"compiler\":\"clang\",\"runtime_dependencies\":[],\"arch\":\"arm64\",\"built_on\":{\"os\":\"Macintosh\",\"os_version\":\"macOS 26\",\"cpu_family\":\"dunno\",\"xcode\":\"26.0\",\"clt\":\"26.0.0.0.1.1756965055\",\"preferred_perl\":\"5.34\"}}"
+      }
+    },
+    {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:ddc93140f594692afc5772cd57f229e1f28dc892395d2a7f9395b8ba743bbb30",
+      "size": 2104,
+      "platform": {
+        "architecture": "amd64",
+        "os": "darwin",
+        "os.version": "macOS 14.7"
+      },
+      "annotations": {
+        "org.opencontainers.image.ref.name": "1.4.1.sonoma",
+        "sh.brew.bottle.digest": "4e3960f18ae73ba2bdb6b046431c9fac5936138cb68f454752b8e7de0aea54f8",
+        "sh.brew.bottle.size": "1920254",
+        "sh.brew.bottle.installed_size": "5824111",
+        "sh.brew.license": "GPL-2.0-only OR LGPL-3.0-or-later",
+        "sh.brew.tab": "{\"homebrew_version\":\"4.6.15-60-g9991345\",\"changed_files\":[],\"source_modified_time\":1759679175,\"compiler\":\"clang\",\"runtime_dependencies\":[],\"arch\":\"x86_64\",\"built_on\":{\"os\":\"Macintosh\",\"os_version\":\"macOS 14.7\",\"cpu_family\":\"penryn\",\"xcode\":\"16.2\",\"clt\":\"16.2.0.0.1.1733547573\",\"preferred_perl\":\"5.34\"}}"
+      }
+    },
+    {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:965a9d3c7c5de745cbf286f275c5975df63421cb50477f5b57b20ecac68f0ad0",
+      "size": 2186,
+      "platform": {
+        "architecture": "amd64",
+        "os": "linux",
+        "os.version": "Ubuntu 22.04.5"
+      },
+      "annotations": {
+        "org.opencontainers.image.ref.name": "1.4.1.x86_64_linux",
+        "sh.brew.bottle.cpu.variant": "core2",
+        "sh.brew.bottle.digest": "f870ec882a5579d1d26fe194454b7c32559268cc0854758b85690385ce844d32",
+        "sh.brew.bottle.glibc.version": "2.35",
+        "sh.brew.bottle.size": "1902528",
+        "sh.brew.bottle.installed_size": "6411431",
+        "sh.brew.license": "GPL-2.0-only OR LGPL-3.0-or-later",
+        "sh.brew.tab": "{\"homebrew_version\":\"4.6.15-60-g9991345\",\"changed_files\":[],\"source_modified_time\":1759679175,\"compiler\":\"gcc-12\",\"runtime_dependencies\":[],\"arch\":\"x86_64\",\"built_on\":{\"os\":\"Linux\",\"os_version\":\"Ubuntu 22.04.5\",\"cpu_family\":\"zen3\",\"glibc_version\":\"2.35\",\"oldest_cpu_family\":\"core2\"}}"
+      }
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "annotations": {
+    "com.github.package.type": "homebrew_bottle",
+    "org.opencontainers.image.created": "2025-10-05T23:15:21Z",
+    "org.opencontainers.image.description": "C string library for manipulating Unicode strings",
+    "org.opencontainers.image.documentation": "https://formulae.brew.sh/formula/libunistring",
+    "org.opencontainers.image.licenses": "GPL-2.0-only OR LGPL-3.0-or-later",
+    "org.opencontainers.image.ref.name": "1.4.1",
+    "org.opencontainers.image.revision": "7535f166d95e9ca0034bcd37f0ef6c4b2ccbaf9f",
+    "org.opencontainers.image.source": "https://github.com/homebrew/homebrew-core/blob/7535f166d95e9ca0034bcd37f0ef6c4b2ccbaf9f/Formula/lib/libunistring.rb",
+    "org.opencontainers.image.title": "libunistring",
+    "org.opencontainers.image.url": "https://www.gnu.org/software/libunistring/",
+    "org.opencontainers.image.vendor": "homebrew",
+    "org.opencontainers.image.version": "1.4.1"
+  }
 }
