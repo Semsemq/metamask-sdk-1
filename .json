@@ -1,21 +1,11 @@
 {
-  "inputs": [
-    {
-      "id": "api_token",
-      "type": "promptString",
-      "description": "Hostinger API "
-    }
-  ],
-  "servers": {
-    "hostinger-mcp": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "hostinger-api-mcp@latest"
-      ],
-      "env": {
-        "API_TOKEN": "WQSV7oOSiCbskpeRraEVk9wUU0nnY1t1K4ud3uPW6fe94818"
-      }
-    }
+  "name": "my-project",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "webpack": "^5.0.0"
   }
-
+}
