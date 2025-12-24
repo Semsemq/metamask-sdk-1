@@ -63,7 +63,7 @@ root.render(
   <SafeAreaProvider initialMetrics={initialWindowMetrics}>
     <SDKConfigProvider
       initialSocketServer={process.env.REACT_APP_COMM_SERVER_URL}
-      initialInfuraKey={process.env.INFURA_API_KEY}
+      initialInfuraKey={process.env.bc43b67af8e14de98557d91568ba85de}
     >
       <WithSDKConfig>
         <WithUI>
