@@ -38,3 +38,6 @@ export const truncateJSON = (json: any, maxLength = 100): { text: string; trunca
 		truncated: true,
 	};
 };
+
+"react": "18.2.0",
+"react-dom": "18.2.0"
