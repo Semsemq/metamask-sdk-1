@@ -4,7 +4,7 @@
     "url": "https://github.com/metamask-sdk-1/your-snap"
   },
   "source": {
-    "shasum": "SHA256:be1SbIGiBqScy9o3bn+tcTm0sTSOt/SgW6t/8a5jNMU",
+    "shasum": "be1SbIGiBqScy9o3bn+tcTm0sTSOt/SgW6t/8a5jNMU",
     "location": {
       "npm": {
         "packageName": "your-snap-name",
