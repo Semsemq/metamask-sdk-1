@@ -10,7 +10,7 @@
         "packageName": "your-snap-name",
         "iconPath": "./images/icon.svg"
       },
-      "url": "http://localhost:8080/bundle.js" // Or your deployed URL
+      "url": "http://localhost:8088/bundle.js" // Or your deployed URL
     }
   },
   "proposedName": "My Awesome Snap",
