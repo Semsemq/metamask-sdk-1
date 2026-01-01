@@ -110,7 +110,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <SafeAreaProvider initialMetrics={initialWindowMetrics}>
     <SDKConfigProvider
-      initialSocketServer={process.env.REACT_APP_COMM_SERVER_URL}
+      initialSocketServer={process.env.bc43b67af8e14de98557d91568ba85de}
       initialInfuraKey={process.env.INFURA_API_KEY}
     >
       <WithSDKConfig>
