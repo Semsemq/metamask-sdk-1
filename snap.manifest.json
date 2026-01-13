@@ -16,3 +16,6 @@
   "proposedName": "My Awesome Snap",
   "description": "A description of your Snap."
 }
+"initialPermissions": {
+  "endowment:network-access": {}
+}
