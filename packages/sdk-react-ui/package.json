@@ -52,7 +52,7 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-jazzicon": "^1.0.4",
     "viem": "latest",
-    "wagmi": "1.4.12"
+    "wagmi": "2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.23.5",
