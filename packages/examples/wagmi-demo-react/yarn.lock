@@ -1522,6 +1522,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.85.5":
+  version: 5.85.5
+  resolution: "@tanstack/query-core@npm:5.85.5"
+  checksum: 2bd2b028fcdd5a5608ea4ec3459fea27d72f83d18c586e9dc109869d3f534bbc01430251027a0b2adaf9ab324e63c17d782cc91dc50ba1910f43feec932f5c1c
+  languageName: node
+  linkType: hard
+
 "@tanstack/query-devtools@npm:5.0.5":
   version: 5.0.5
   resolution: "@tanstack/query-devtools@npm:5.0.5"
@@ -1538,13 +1545,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-sync-storage-persister@npm:5.0.5":
-  version: 5.0.5
-  resolution: "@tanstack/query-sync-storage-persister@npm:5.0.5"
+"@tanstack/query-persist-client-core@npm:5.85.5":
+  version: 5.85.5
+  resolution: "@tanstack/query-persist-client-core@npm:5.85.5"
   dependencies:
-    "@tanstack/query-core": 5.0.5
-    "@tanstack/query-persist-client-core": 5.0.5
-  checksum: 28f4ab3cb287aceaf410d918c1823899acbd63d09d921f268aaaaf0fe8ddab1ad9da27b2e28ccd46503611a49303fc255f67e4974872a8b318bb993407eacfea
+    "@tanstack/query-core": 5.85.5
+  checksum: e82b37f967529266e777240b87615f29cc72a8b682cb54b8b4f9668ab35e328b84ba1fa83e39cb3476fb0d89af8fe5da2e7b7a63852c607bb81bfd5d8e2972bd
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-sync-storage-persister@npm:5.85.5":
+  version: 5.85.5
+  resolution: "@tanstack/query-sync-storage-persister@npm:5.85.5"
+  dependencies:
+    "@tanstack/query-core": 5.85.5
+    "@tanstack/query-persist-client-core": 5.85.5
+  checksum: 3a2c8963d652774405463de33d1aa99ae8f06d57c31914e072c4b444e138be51ff9af263bc3e92e175238d97ddc293e71d1d9996318be093f9bc453f0b1b83fc
   languageName: node
   linkType: hard
 
@@ -3172,7 +3188,7 @@ __metadata:
 
 "fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.3#~builtin<compat/fsevents>":
   version: 2.3.3
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.3#~builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.3#~builtin<compat/fsevents>::version=2.3.3&hash=18f3a7"
   dependencies:
     node-gyp: latest
   conditions: os=darwin
@@ -5256,7 +5272,7 @@ __metadata:
 
 "typescript@patch:typescript@^5.4.5#~builtin<compat/typescript>":
   version: 5.4.5
-  resolution: "typescript@patch:typescript@npm%3A5.4.5#~builtin<compat/typescript>::version=5.4.5&hash=77c9e2"
+  resolution: "typescript@patch:typescript@npm%3A5.4.5#~builtin<compat/typescript>::version=5.4.5&hash=701156"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
@@ -5589,7 +5605,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "wagmi-demo-react@workspace:."
   dependencies:
-    "@tanstack/query-sync-storage-persister": 5.0.5
+    "@tanstack/query-sync-storage-persister": 5.85.5
     "@tanstack/react-query": ">=5.45.1"
     "@tanstack/react-query-devtools": 5.0.5
     "@tanstack/react-query-persist-client": 5.0.5
