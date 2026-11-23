@@ -55,7 +55,7 @@
     "cryptocurrency-icons": "^0.18.1",
     "ethereumjs-util": "^7.1.5",
     "i18n-js": "^4.3.2",
-    "i18next": "^23.6.0",
+    "i18next": "^26.3.4",
     "intl-pluralrules": "^2.0.1",
     "lodash": "^4.17.21",
     "react-i18next": "^13.3.1",
